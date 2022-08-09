@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Javascript HTML Table - Sum</title>
+    <meta charset="windows-1252">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        *::selection {
+            background: #4b07aa;
+            color: #ef19a4;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background-color: #333;
+        }
+
+        .container {
+            width: fit-content;
+            margin: 10px auto;
+        }
+
+        table {
+            margin: 10px auto;
+            border-spacing: 4px;
+        }
+
+        table td,
+        th {
+            padding: 5px;
+            border-radius: 5px;
+            background-color: rgb(255, 145, 0);
+        }
+
+        .blue {
+            background: blue;
+        }
+
+        table th {
+            background-color: #ff0d00;
+        }
+
+        table td {
+            text-align: center;
+        }
+
+        table tfoot td {
+            background-color: yellow;
+        }
+
+        .container .btn button.col-hover-btn-1 {
+            width: 150px;
+            height: 40px;
+            font-size: 1.3em;
+            color: white;
+            background-color: transparent;
+            border: 2px solid;
+            border-color: white;
+            border-radius: 10px;
+            position: relative;
+            cursor: pointer;
+            font-family: 'Roboto', Arial, sans-serif;
+            transition: .5s ease-in-out;
+            text-transform: uppercase;
+            font-weight: 600;
+            letter-spacing: 1px;
+            z-index: 12;
+            overflow: hidden;
+        }
+
+        .container button.col-hover-btn-1:hover {
+            border-color: darkgoldenrod;
+        }
+
+        .container button.col-hover-btn-1::before {
+            content: "";
+            position: absolute;
+            top: -2px;
+            right: -2px;
+            border-style: solid;
+            border-width: 0px 30px 30px 0px;
+            border-color: transparent darkgoldenrod;
+        }
+
+        .container button.col-hover-btn-1::after {
+            content: "";
+            position: absolute;
+            top: calc(100% - 7px);
+            left: 0%;
+            background-color: #895888;
+            width: 100%;
+            height: 102%;
+            z-index: -1;
+            transform: translatey(8px);
+            opacity: .4;
+            transition: .5s;
+        }
+
+        .container div.btn:hover ::after {
+            background-color: darksalmon;
+            opacity: 1;
+            transform: translatey(-30px);
+        }
+
+        button.spc {
+            width: 150px;
+            height: 40px;
+            font-size: 1.1em;
+            font-weight: 900;
+            text-transform: uppercase;
+            font-family: 'BenchNine', serif;
+            color: white;
+            position: relative;
+            background-color: #c47135;
+            border: 1px solid #c47135;
+        }
+
+        button.spc::before {
+            content: " ";
+            position: absolute;
+            background: #c47135;
+            width: 10%;
+            height: 2px;
+            top: -7px;
+            left: 0px;
+            transition: .2s linear;
+        }
+
+        :hover button::before {
+            width: 100%;
+        }
+    </style>
+    <!-- External  -->
+    <!--End Style -->
+</head>
+
+<body>
+    <!-- Start Table -->
+    <div class="container">
+        <table id="table">
+            <tr>
+                <th>Values</th>
+            </tr>
+            <tr>
+                <td>43</td>
+            </tr>
+            <tr>
+                <td>28</td>
+            </tr>
+            <tr>
+                <td>15</td>
+            </tr>
+            <tr>
+                <td>50</td>
+            </tr>
+            <tr>
+                <td>31</td>
+            </tr>
+            <tr>
+                <td>85</td>
+            </tr>
+            <tr>
+                <td>18</td>
+            </tr>
+            <tfoot>
+                <tr>
+                    <td>Sum Value = ???</td>
+                </tr>
+            </tfoot>
+        </table>
+        <div class="btn">
+            <button class="col-hover-btn-1" onclick="myFunction()">Get Sum </button>
+            <button type="button" class="spc" onClick="window.location.reload()">
+                Reload Page
+            </button>
+            <button onclick="btnClick()" style="    padding: 10px;
+            background-image: linear-gradient(90deg, #3f51b5, #ffeb3b);
+            font-size: 1.3em;
+            color: white;
+            font-weight: 900;">change color</button>
+        </div>
+    </div>
+    <!-- Main Script -->
+    <script>
+        var table = document.getElementById("table"), sumVal = 0;
+        var x = document.getElementById("table").rows[0].cells;
+        for (var i = 1; i < table.rows.length - 1; i++) {
+            sumVal = sumVal + parseInt(table.rows[i].cells[0].innerHTML);
+        }
+        function btnClick() {
+            var x = document.getElementById("table").getElementsByTagName("td");
+            for (var i = 1; i < table.rows.length - 1; i++) {
+                if (i % 2 != 0)
+                    x[i].style.backgroundColor = "yellow";
+            }
+        }
+        function myFunction() {
+            var x = document.getElementById("table").rows[0].cells;
+            table.rows[8].cells[0].innerHTML = "Sum Value = " + sumVal;
+        }
+    </script>
+</body>
+
+</html>
